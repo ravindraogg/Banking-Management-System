@@ -1,35 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { fetchBranches, addBranch } from '../api.js';
 import AdminHeader from '../components/AdminHeader';
 import AdminSidebar from '../components/AdminSidebar';
 import AdminFooter from '../components/AdminFooter';
+import axios from 'axios';
 
 const ManageBranches = () => {
   const [branches, setBranches] = useState([]);
   const [branchName, setBranchName] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    const getBranches = async () => {
-      try {
-        const branches = await fetchBranches();
-        setBranches(branches);
-      } catch (error) {
-        console.error('Error fetching branches:', error);
-      }
-    };
-
-    getBranches();
+    setLoading(true);
+    axios.get('http://localhost:8080/api/admin/branches')
+      .then(response => {
+        setBranches(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError('Error fetching branches.');
+        setLoading(false);
+      });
   }, []);
 
-  const handleAddBranch = async () => {
+  const addBranch = () => {
     if (branchName) {
-      try {
-        const newBranch = await addBranch(branchName);
-        setBranches([...branches, newBranch]);
-        setBranchName('');
-      } catch (error) {
-        console.error('Error adding branch:', error);
-      }
+      const newBranch = { name: branchName };
+      setBranches([...branches, newBranch]);
+      setBranchName('');
+            axios.post('http://localhost:8080/api/admin/add', newBranch)
+        .then(response => {
+          setError('');
+        })
+        .catch(error => {
+          setBranches(branches.filter(branch => branch.name !== branchName));
+          setError('Error adding branch.');
+        });
     }
   };
 
@@ -40,6 +46,8 @@ const ManageBranches = () => {
         <AdminSidebar />
         <main className="flex-1 bg-gray-100 p-6">
           <h2 className="text-3xl font-bold mb-4">Manage Branches</h2>
+          {error && <div className="text-red-500 mb-4">{error}</div>}
+
           <div className="bg-white p-6 shadow rounded mb-6">
             <input
               type="text"
@@ -49,19 +57,23 @@ const ManageBranches = () => {
               className="border p-2 rounded w-full mb-3"
             />
             <button
-              onClick={handleAddBranch}
+              onClick={addBranch}
               className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
             >
-              Add Branch
+              {loading ? 'Adding...' : 'Add Branch'}
             </button>
           </div>
           <h3 className="text-xl font-bold mb-4">Branch List</h3>
           <ul className="bg-white shadow rounded p-4">
-            {branches.map((branch, index) => (
-              <li key={index} className="p-2 border-b last:border-none">
-                {branch.name}
-              </li>
-            ))}
+            {loading ? (
+              <li>Loading branches...</li>
+            ) : (
+              branches.map((branch, index) => (
+                <li key={index} className="p-2 border-b last:border-none">
+                  {branch.name}
+                </li>
+              ))
+            )}
           </ul>
         </main>
       </div>

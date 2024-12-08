@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { fetchAllCustomers } from '../api.js';
 import AdminHeader from '../components/AdminHeader';
 import AdminSidebar from '../components/AdminSidebar';
 import AdminFooter from '../components/AdminFooter';
@@ -10,8 +9,9 @@ const ViewCustomers = () => {
   useEffect(() => {
     const getCustomers = async () => {
       try {
-        const customers = await fetchAllCustomers();
-        setCustomers(customers);
+        const response = await fetch('http://localhost:8080/customer/customers');
+        const data = await response.json();
+        setCustomers(data);
       } catch (error) {
         console.error('Error fetching customers:', error);
       }

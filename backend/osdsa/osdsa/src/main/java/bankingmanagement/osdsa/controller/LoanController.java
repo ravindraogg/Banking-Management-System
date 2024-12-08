@@ -33,10 +33,12 @@ public class LoanController {
     }
 
     // Update the loan status
-    @PutMapping("/{id}/status")
-    public Loan updateLoanStatus(@PathVariable String id, @RequestParam String status) {
-        return loanService.updateLoanStatus(id, status);
-    }
+   // Update the loan status
+@PutMapping("/{id}/status")
+public Loan updateLoanStatus(@PathVariable String id, @RequestParam String status) {
+    return loanService.updateLoanStatus(id, status);
+}
+
 
     @GetMapping("/")
     public List<Loan> getAllLoans() {

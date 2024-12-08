@@ -19,6 +19,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 import CreateAccount from './admin/pages/CreateAccount';
 import AdminLoanApplications from './admin/pages/AdminLoanApplications';
+import AccountCreate from './user/pages/AccountCreate';
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         {/* User Routes */}
         <Route path="/user/dashboard" element={<UserDashboard />} />
         <Route path="/user/account-details" element={<AccountDetails />} />
+        {/* <Route path="/account/:customerId" component={AccountDetails} /> */}
         <Route path="/user/transfer-funds" element={<TransferFunds />} />
         <Route path="/user/transaction-history" element={<TransactionHistory />} />
         <Route path="/user/loan-application" element={<LoanApplication />} />
@@ -42,6 +44,7 @@ const App = () => {
         <Route path="/user/profile" element={<UserProfile />} />
         <Route path="/logout" element={<Logout />} />
         <Route path='/login' element={<Login/>}/>
+        <Route path='/createaccount' element={<AccountCreate/>}/>
         
 
         {/* Default Route */}

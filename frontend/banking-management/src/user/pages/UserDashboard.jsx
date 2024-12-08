@@ -7,22 +7,55 @@ import axios from 'axios';
 const UserDashboard = () => {
   const [balance, setBalance] = useState(0);
   const [transactions, setTransactions] = useState([]);
-  const customerId = 'your-customer-id'; // Replace with actual customer ID
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const customerId = localStorage.getItem('customerId'); // Retrieve customer ID from localStorage
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/customer/${customerId}/accounts`)
-      .then(response => {
-        const accounts = response.data;
+    const fetchAccountData = async () => {
+      try {
+        const accountResponse = await axios.get(`http://localhost:8080/customer/${customerId}/accounts`);
+        const accounts = accountResponse.data;
+        
         if (accounts.length > 0) {
-          setBalance(accounts[0].balance);
+          const totalBalance = accounts.reduce((acc, account) => acc + account.balance, 0);
+          setBalance(totalBalance);
         }
-      })
-      .catch(error => console.error('Error fetching account data:', error));
 
-    axios.get(`http://localhost:8080/customer/${customerId}/transactions`)
-      .then(response => setTransactions(response.data))
-      .catch(error => console.error('Error fetching transactions:', error));
+        const transactionResponse = await axios.get(`http://localhost:8080/customer/${customerId}/transactions`);
+        setTransactions(transactionResponse.data);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching data:', err);
+        setError('Failed to fetch account or transaction data');
+        setLoading(false);
+      }
+    };
+
+    if (customerId) {
+      fetchAccountData();
+    } else {
+      setError('Customer ID not found');
+      setLoading(false);
+    }
   }, [customerId]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-red-500 text-lg font-semibold">{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col h-screen">
@@ -30,21 +63,32 @@ const UserDashboard = () => {
       <div className="flex flex-1">
         <UserSidebar />
         <main className="flex-1 bg-gray-100 p-6">
-          <h1 className="text-3xl font-bold mb-4">Welcome to Your Dashboard</h1>
+          <h1 className="text-3xl font-bold mb-6">Welcome to Your Dashboard</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white shadow p-4 rounded">
+            {/* Account Overview Section */}
+            <div className="bg-white shadow p-4 rounded-lg">
               <h2 className="text-lg font-semibold mb-2">Account Overview</h2>
-              <p>Total Balance: ${balance}</p>
+              <p className="text-gray-700">Total Balance: <span className="font-bold">${balance.toFixed(2)}</span></p>
             </div>
-            <div className="bg-white shadow p-4 rounded">
+            
+            {/* Recent Transactions Section */}
+            <div className="bg-white shadow p-4 rounded-lg">
               <h2 className="text-lg font-semibold mb-2">Recent Transactions</h2>
-              <ul>
-                {transactions.slice(0, 5).map((txn, index) => (
-                  <li key={index} className="border-b last:border-none py-1">
-                    {txn.date} - {txn.type}: ${txn.amount}
-                  </li>
-                ))}
-              </ul>
+              {transactions.length > 0 ? (
+                <ul>
+                  {transactions.slice(0, 5).map((txn, index) => (
+                    <li key={index} className="border-b last:border-none py-2 text-sm">
+                      <span className="font-medium">{txn.date}</span> - 
+                      <span className={`ml-2 ${txn.type === 'Debit' ? 'text-red-500' : 'text-green-500'}`}>
+                        {txn.type}
+                      </span>: 
+                      <span className="ml-2 font-bold">${txn.amount.toFixed(2)}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-gray-500">No recent transactions found.</p>
+              )}
             </div>
           </div>
         </main>

@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Account {
 
     @Id
-    private String id;
+    private String accountid;
     private String customerId;
     private double balance;
     private String accountType; // e.g., "Checking", "Savings"
@@ -15,11 +15,11 @@ public class Account {
     private String password;
     // Getters and setters
     public String getId() {
-        return id;
+        return accountid;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.accountid = id;
     }
 
     public String getCustomerId() {
@@ -62,7 +62,7 @@ public class Account {
     }
     @Override
     public String toString() {
-        return "Account [id=" + id + ", customerId=" + customerId + ", balance=" + balance + ", accountType="
+        return "Account [id=" + accountid + ", customerId=" + customerId + ", balance=" + balance + ", accountType="
                 + accountType + ", status=" + status + "]";
     }
 }

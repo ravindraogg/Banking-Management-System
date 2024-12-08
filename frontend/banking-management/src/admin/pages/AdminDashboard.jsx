@@ -34,7 +34,6 @@
 
 // export default AdminDashboard;
 import React, { useEffect, useState } from 'react';
-import { fetchCustomerCount, fetchBranchCount, fetchManagerCount } from '../api.js';
 import AdminHeader from '../components/AdminHeader';
 import AdminSidebar from '../components/AdminSidebar';
 import AdminFooter from '../components/AdminFooter';
@@ -47,13 +46,16 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const customerCount = await fetchCustomerCount();
+        const customerCountResponse = await fetch('http://localhost:8080/customer/customers-count');
+        const customerCount = await customerCountResponse.json();
         setCustomerCount(customerCount);
 
-        const branchCount = await fetchBranchCount();
+        const branchCountResponse = await fetch('http://localhost:8080/api/admin/branch-count');
+        const branchCount = await branchCountResponse.json();
         setBranchCount(branchCount);
 
-        const managerCount = await fetchManagerCount();
+        const managerCountResponse = await fetch('http://localhost:8080/api/admin/manager-count');
+        const managerCount = await managerCountResponse.json();
         setManagerCount(managerCount);
       } catch (error) {
         console.error('Error fetching counts:', error);

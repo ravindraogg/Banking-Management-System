@@ -8,36 +8,46 @@ public class Transaction {
 
     @Id
     private String id;
-    private String customerId; // Link transaction to customer
-    private String accountId;
+    private String senderCustomerId;  // Add senderCustomerId
+    private String recipientCustomerId;  // Add recipientCustomerId
+    private String senderAccountId;  // Add senderAccountId
+    private String recipientAccountId;  // Add recipientAccountId
     private double amount;
-    private String transactionType; // e.g., "Deposit", "Withdrawal"
     private String transactionDate;
-    private String description;
+    private String transactionType;
+    private String description;  // Add description
 
-    // Getters and setters
-    public String getId() {
-        return id;
+    // Getters and setters for new fields
+    public String getSenderCustomerId() {
+        return senderCustomerId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSenderCustomerId(String senderCustomerId) {
+        this.senderCustomerId = senderCustomerId;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getRecipientCustomerId() {
+        return recipientCustomerId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setRecipientCustomerId(String recipientCustomerId) {
+        this.recipientCustomerId = recipientCustomerId;
     }
 
-    public String getAccountId() {
-        return accountId;
+    public String getSenderAccountId() {
+        return senderAccountId;
     }
 
-    public void setAccountId(String accountId) {
-        this.accountId = accountId;
+    public void setSenderAccountId(String senderAccountId) {
+        this.senderAccountId = senderAccountId;
+    }
+
+    public String getRecipientAccountId() {
+        return recipientAccountId;
+    }
+
+    public void setRecipientAccountId(String recipientAccountId) {
+        this.recipientAccountId = recipientAccountId;
     }
 
     public double getAmount() {
@@ -48,20 +58,20 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public String getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
-
     public String getTransactionDate() {
         return transactionDate;
     }
 
     public void setTransactionDate(String transactionDate) {
         this.transactionDate = transactionDate;
+    }
+
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
     public String getDescription() {
@@ -74,7 +84,8 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction [id=" + id + ", customerId=" + customerId + ", accountId=" + accountId + ", amount=" + amount + 
-               ", transactionType=" + transactionType + ", transactionDate=" + transactionDate + ", description=" + description + "]";
+        return "Transaction [id=" + id + ", senderCustomerId=" + senderCustomerId + ", recipientCustomerId=" + recipientCustomerId +
+                ", senderAccountId=" + senderAccountId + ", recipientAccountId=" + recipientAccountId + ", amount=" + amount +
+                ", transactionDate=" + transactionDate + ", transactionType=" + transactionType + ", description=" + description + "]";
     }
 }

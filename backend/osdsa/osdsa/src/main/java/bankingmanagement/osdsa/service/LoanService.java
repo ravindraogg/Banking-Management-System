@@ -32,13 +32,10 @@ public class LoanService {
 
     // Update loan status
     public Loan updateLoanStatus(String id, String status) {
-        Optional<Loan> loanOpt = loanRepository.findById(id);
-        if (loanOpt.isPresent()) {
-            Loan loan = loanOpt.get();
-            loan.setStatus(status);
-            return loanRepository.save(loan);
-        }
-        return null;
+        Loan loan = loanRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Loan not found with id: " + id));
+        loan.setStatus(status);
+        return loanRepository.save(loan);
     }
 
     public List<Loan> getAllLoans() {

@@ -1,88 +1,106 @@
 import React, { useState, useEffect } from 'react';
-import { fetchUserProfile, updateUserProfile } from '../api';
 
 const UserProfile = () => {
   const [userData, setUserData] = useState({
-    username: '',
-    email: '',
     fullName: '',
+    email: '',
     phone: '',
     address: '',
   });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
+  // Fetch the user data on component mount
   useEffect(() => {
-    const getUserProfile = async () => {
+    const customerId = localStorage.getItem('customerId');
+    if (!customerId) {
+      setError('No customer ID found. Please log in.');
+      setLoading(false);
+      return;
+    }
+
+    const fetchUserData = async () => {
       try {
-        const userProfile = await fetchUserProfile('your-user-id'); 
-        setUserData(userProfile);
-      } catch (error) {
-        console.error('Error fetching profile data:', error);
+        const response = await fetch(`http://localhost:8080/customer/${customerId}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch user profile');
+        }
+
+        const data = await response.json();
+        console.log('Fetched user data:', data);
+        setUserData({
+          fullName: `${data.firstName} ${data.lastName}`,
+          email: data.email,
+          phone: data.phone,
+          address: data.address,
+        });
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    getUserProfile();
+    fetchUserData();
   }, []);
 
-  const handleUpdate = async (event) => {
-    event.preventDefault();
-    try {
-      await updateUserProfile(userData);
-      alert('Profile updated successfully!');
-    } catch (error) {
-      console.error('Error updating profile:', error);
-      alert('Failed to update profile.');
-    }
-  };
+  if (loading) {
+    return <div className="text-center p-4">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center p-4 text-red-600">{error}</div>;
+  }
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold text-center mb-6">User Profile</h2>
-
-      <form onSubmit={handleUpdate} className="space-y-4">
+    <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
+      <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800">User Profile</h2>
+      <div className="space-y-6">
         <div>
-          <label className="block text-gray-700">Full Name</label>
+          <label className="block text-sm font-medium text-gray-600">Full Name</label>
           <input
             type="text"
             value={userData.fullName}
-            onChange={(e) => setUserData({ ...userData, fullName: e.target.value })}
-            className="w-full p-2 border rounded-md"
-            required
+            readOnly
+            className="w-full p-3 mt-2 border rounded-md bg-gray-100"
           />
         </div>
         <div>
-          <label className="block text-gray-700">Email</label>
+          <label className="block text-sm font-medium text-gray-600">Email</label>
           <input
             type="email"
             value={userData.email}
-            onChange={(e) => setUserData({ ...userData, email: e.target.value })}
-            className="w-full p-2 border rounded-md"
-            required
+            readOnly
+            className="w-full p-3 mt-2 border rounded-md bg-gray-100"
           />
         </div>
         <div>
-          <label className="block text-gray-700">Phone</label>
+          <label className="block text-sm font-medium text-gray-600">Phone</label>
           <input
             type="text"
             value={userData.phone}
-            onChange={(e) => setUserData({ ...userData, phone: e.target.value })}
-            className="w-full p-2 border rounded-md"
-            required
+            readOnly
+            className="w-full p-3 mt-2 border rounded-md bg-gray-100"
           />
         </div>
         <div>
-          <label className="block text-gray-700">Address</label>
+          <label className="block text-sm font-medium text-gray-600">Address</label>
           <input
             type="text"
             value={userData.address}
-            onChange={(e) => setUserData({ ...userData, address: e.target.value })}
-            className="w-full p-2 border rounded-md"
-            required
+            readOnly
+            className="w-full p-3 mt-2 border rounded-md bg-gray-100"
           />
         </div>
-        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700">
-          Update Profile
+      </div>
+      <div className="mt-6 text-center">
+        <button
+          onClick={() => window.location.href = '/user/settings'}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+        >
+          Edit Profile
         </button>
-      </form>
+      </div>
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import MainHeader from './MainHeader';
 const Home = () => {
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+    <><MainHeader></MainHeader><div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
       <header className="text-center py-16">
         <h1 className="text-5xl font-bold text-blue-800 mb-4">Welcome to Pluto Banking App</h1>
         <p className="text-xl text-gray-600 mb-8">
@@ -17,7 +17,7 @@ const Home = () => {
             Login
           </Link>
           <Link
-            to="/contact"
+            to="/createaccount"
             className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-700 transition duration-300"
           >
             Create Account
@@ -51,7 +51,7 @@ const Home = () => {
       <footer className="mt-16 text-center py-6 bg-gray-800 text-white w-full">
         <p>&copy; 2024 Banking App. All Rights Reserved.</p>
       </footer>
-    </div>
+    </div></>
   );
 };
 

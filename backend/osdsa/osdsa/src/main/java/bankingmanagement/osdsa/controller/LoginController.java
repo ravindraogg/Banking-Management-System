@@ -23,15 +23,40 @@ public class LoginController {
     private AccountRepository accountRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         Optional<Account> optionalAccount = accountRepository.findByCustomerId(loginRequest.getEmail());
 
         if (optionalAccount.isPresent()) {
             Account account = optionalAccount.get();
             if (BCrypt.checkpw(loginRequest.getPassword(), account.getPassword())) {
-                return ResponseEntity.ok("Login successful.");
+                return ResponseEntity.ok().body(new LoginResponse("Login successful", account.getCustomerId()));
             }
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email or password.");
+    }
+    public static class LoginResponse {
+        private String message;
+        private String customerId;
+
+        public LoginResponse(String message, String customerId) {
+            this.message = message;
+            this.customerId = customerId;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+
+        public void setMessage(String message) {
+            this.message = message;
+        }
+
+        public String getCustomerId() {
+            return customerId;
+        }
+
+        public void setCustomerId(String customerId) {
+            this.customerId = customerId;
+        }
     }
 }

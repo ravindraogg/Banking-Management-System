@@ -1,4 +1,3 @@
-// src/user/components/AccountCard.jsx
 import React from 'react';
 
 const AccountCard = ({ balance, accountType, accountNumber }) => {

@@ -5,7 +5,7 @@ const UserHeader = () => {
   return (
     <header className="bg-blue-600 text-white p-4 shadow">
       <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Banking App</h1>
+        <h1 className="text-2xl font-bold">Pluto Banking</h1>
         <nav>
           <Link
             to="/user/dashboard"

@@ -35,10 +35,26 @@ public class CustomerService {
         customerRepository.deleteById(id);
     }
 
-    public Customer updateCustomer(String id, Customer customer) {
-        customer.setId(id);
-        return customerRepository.save(customer);
+    public Customer updateCustomer(String customerId, Customer updatedCustomer) {
+        Optional<Customer> existingCustomer = customerRepository.findByCustomerId(customerId);
+    
+        if (existingCustomer.isPresent()) {
+            Customer customer = existingCustomer.get();
+    
+            // Update fields
+            customer.setFirstName(updatedCustomer.getFirstName());
+            customer.setLastName(updatedCustomer.getLastName());
+            customer.setEmail(updatedCustomer.getEmail());
+            customer.setPhone(updatedCustomer.getPhone());
+            customer.setAddress(updatedCustomer.getAddress());
+    
+            // Save updated customer
+            return customerRepository.save(customer);
+        } else {
+            throw new RuntimeException("Customer not found with customerId: " + customerId);
+        }
     }
-
+    
+    
     
 }

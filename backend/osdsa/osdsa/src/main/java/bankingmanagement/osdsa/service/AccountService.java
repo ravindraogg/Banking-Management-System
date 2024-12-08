@@ -67,4 +67,8 @@ public class AccountService {
         logger.info("Hashing password");
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
+
+    public Account updateAccount(Account account) {
+        return accountRepository.save(account); // Save the updated account
+    }
 }

@@ -1,36 +1,116 @@
 import React, { useEffect, useState } from 'react';
-import UserHeader from '../components/UserHeader';
-import UserSidebar from '../components/UserSidebar';
-import UserFooter from '../components/UserFooter';
 import axios from 'axios';
+import UserSidebar from '../components/UserSidebar';
 
 const AccountDetails = () => {
-  const [accountDetails, setAccountDetails] = useState({});
-  const accountId = 'your-account-id'; // Replace with actual account ID
+  const customerId = localStorage.getItem('customerId'); // Retrieve customer ID
+  const [state, setState] = useState({
+    accounts: [],
+    loading: true,
+    error: null,
+  });
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/account/${accountId}`)
-      .then(response => setAccountDetails(response.data))
-      .catch(error => console.error('Error fetching account details:', error));
-  }, [accountId]);
+    if (customerId) {
+      axios
+        .get(`http://localhost:8080/customer/${customerId}/accounts`)
+        .then((response) => {
+          const accountData = Array.isArray(response.data) ? response.data : [response.data];
+          setState({ accounts: accountData, loading: false, error: null });
+        })
+        .catch((error) => {
+          console.error('Error fetching account details:', error);
+          setState({ accounts: [], loading: false, error: 'Failed to fetch account details' });
+        });
+    } else {
+      setState({ accounts: [], loading: false, error: 'No customer ID found in localStorage' });
+    }
+  }, [customerId]);
+
+  const { accounts, loading, error } = state;
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-lg font-semibold text-red-500">{error}</div>
+      </div>
+    );
+  }
+
+  const renderAccountTypeDetails = (account) => {
+    if (account.accountType === 'Savings') {
+      return (
+        <div className="space-y-4">
+          <div className="flex justify-between">
+            <span className="font-medium text-lg">Interest Rate:</span>
+            <span>{account.interestRate || 'Not Available'}%</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium text-lg">Minimum Balance:</span>
+            <span>${account.minimumBalance || 'Not Available'}</span>
+          </div>
+        </div>
+      );
+    } else if (account.accountType === 'Current') {
+      return (
+        <div className="space-y-4">
+          <div className="flex justify-between">
+            <span className="font-medium text-lg">Overdraft Limit:</span>
+            <span>${account.overdraftLimit || 'Not Available'}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium text-lg">Transaction Fees:</span>
+            <span>${account.transactionFees || 'Not Available'}</span>
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
 
   return (
-    <div className="flex flex-col h-screen">
-      <UserHeader />
-      <div className="flex flex-1">
-        <UserSidebar />
-        <main className="flex-1 bg-gray-100 p-6">
-          <h1 className="text-3xl font-bold mb-4">Account Details</h1>
-          <div className="bg-white shadow p-4 rounded">
-            <p>Account Number: {accountDetails.id}</p>
-            <p>Account Type: {accountDetails.accountType}</p>
-            <p>Balance: ${accountDetails.balance}</p>
-            <p>Status: {accountDetails.status}</p>
-          </div>
-        </main>
-      </div>
-      <UserFooter />
-    </div>
+    
+      <>
+      <header className="bg-blue-600 text-white shadow-md p-4 flex justify-between items-center">
+      <h1 className="text-2xl font-bold">Pluto Banking</h1>
+    </header>
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
+        <h1 className="text-3xl font-bold mb-6">Account Details</h1>
+        <div className="text-lg font-medium mb-6">
+          <span className="text-gray-600">Customer ID:</span> <span className="text-blue-500">{customerId}</span>
+        </div>
+
+        {accounts.length > 0 ? (
+          accounts.map((account) => (
+            <div
+              key={account.id}
+              className="space-y-8 mb-8 p-4 hover:shadow-xl border rounded-lg transition-all duration-300"
+            >
+              <div className="grid grid-cols-2 gap-4">
+                <div className="font-medium text-lg">Account Number:</div>
+                <div>{account.id}</div>
+                <div className="font-medium text-lg">Account Type:</div>
+                <div>{account.accountType}</div>
+                <div className="font-medium text-lg">Balance:</div>
+                <div>${account.balance}</div>
+                <div className="font-medium text-lg">Status:</div>
+                <div>{account.status}</div>
+              </div>
+              {renderAccountTypeDetails(account)}
+            </div>
+          ))
+        ) : (
+          <div className="text-lg font-semibold text-red-500">No accounts found for this customer.</div>
+        )}
+      </div></>
   );
 };
 

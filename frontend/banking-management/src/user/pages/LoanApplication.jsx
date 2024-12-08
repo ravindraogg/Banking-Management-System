@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UserHeader from '../components/UserHeader';
 import UserSidebar from '../components/UserSidebar';
 import UserFooter from '../components/UserFooter';
@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const LoanApplication = () => {
   const [formData, setFormData] = useState({
+    customerId: '', // Add customer ID field
     loanType: '',
     amount: '',
     interestRate: '',
@@ -13,6 +14,17 @@ const LoanApplication = () => {
     startDate: '',
     endDate: '',
   });
+
+  // Fetch customer ID from localStorage when the component mounts
+  useEffect(() => {
+    const customerId = localStorage.getItem('customerId'); // Fetch customerId from localStorage
+    if (customerId) {
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        customerId,
+      }));
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,11 +34,16 @@ const LoanApplication = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8080/loan/', formData)
+    console.log('Submitting loan application:', formData); // Debugging statement
+
+    axios
+      .post('http://localhost:8080/loan/', formData)
       .then(response => {
+        console.log('Response from server:', response); // Debugging statement
         alert('Loan Application Submitted!');
         // Optionally reset the form after successful submission
         setFormData({
+          customerId: localStorage.getItem('customerid'), // Keep customerId pre-filled
           loanType: '',
           amount: '',
           interestRate: '',
@@ -36,7 +53,7 @@ const LoanApplication = () => {
         });
       })
       .catch(error => {
-        console.error('Error:', error);
+        console.error('Error:', error); // Debugging statement
         alert('Failed to submit loan application!');
       });
   };
@@ -49,6 +66,16 @@ const LoanApplication = () => {
         <main className="flex-1 bg-gray-100 p-6">
           <h1 className="text-3xl font-bold mb-4">Loan Application</h1>
           <form className="bg-white shadow p-6 rounded" onSubmit={handleSubmit}>
+            <label className="block mb-4">
+              Customer ID:
+              <input
+                type="text"
+                name="customerId"
+                value={formData.customerId}
+                className="mt-1 p-2 border rounded w-full"
+                readOnly // Make this field read-only
+              />
+            </label>
             <label className="block mb-4">
               Loan Type:
               <input
@@ -91,9 +118,8 @@ const LoanApplication = () => {
                 type="text"
                 name="status"
                 value={formData.status}
-                onChange={handleInputChange}
                 className="mt-1 p-2 border rounded w-full"
-                required
+                readOnly // Make this field read-only since it's set to "Pending"
               />
             </label>
             <label className="block mb-4">

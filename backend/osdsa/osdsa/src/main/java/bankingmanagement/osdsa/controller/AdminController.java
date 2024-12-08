@@ -3,7 +3,6 @@ package bankingmanagement.osdsa.controller;
 import bankingmanagement.osdsa.model.Account;
 import bankingmanagement.osdsa.model.Customer;
 import bankingmanagement.osdsa.service.AccountService;
-import bankingmanagement.osdsa.service.BranchService;
 import bankingmanagement.osdsa.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +22,6 @@ public class AdminController {
     @Autowired
     private AccountService accountService;
 
-    @Autowired
-    private BranchService branchService;
 
     @GetMapping("/dashboard")
     @PreAuthorize("hasRole('ADMIN')")
@@ -68,11 +65,11 @@ public class AdminController {
         return customerService.getCustomerCount();
     }
 
-    // Get branch count
-    @GetMapping("/branch-count")
-    public long getBranchCount() {
-        return branchService.getBranchCount();
-    }
+    // // Get branch count
+    // @GetMapping("/branch-count")
+    // public long getBranchCount() {
+    //     return branchService.getBranchCount();
+    // }
 
     // Delete a customer by ID
     @DeleteMapping("/customer/{id}")
