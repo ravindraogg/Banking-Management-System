@@ -57,6 +57,9 @@ const UserDashboard = () => {
     );
   }
 
+  // Reverse transactions array to show the most recent first
+  const reversedTransactions = [...transactions].reverse();
+
   return (
     <div className="flex flex-col h-screen">
       <UserHeader />
@@ -68,23 +71,26 @@ const UserDashboard = () => {
             {/* Account Overview Section */}
             <div className="bg-white shadow p-4 rounded-lg">
               <h2 className="text-lg font-semibold mb-2">Account Overview</h2>
-              <p className="text-gray-700">Total Balance: <span className="font-bold">${balance.toFixed(2)}</span></p>
+              <p className="text-gray-700">Total Balance: <span className="font-bold">₹{balance.toFixed(2)}</span></p>
             </div>
-            
+
             {/* Recent Transactions Section */}
             <div className="bg-white shadow p-4 rounded-lg">
               <h2 className="text-lg font-semibold mb-2">Recent Transactions</h2>
-              {transactions.length > 0 ? (
+              {reversedTransactions.length > 0 ? (
                 <ul>
-                  {transactions.slice(0, 5).map((txn, index) => (
-                    <li key={index} className="border-b last:border-none py-2 text-sm">
-                      <span className="font-medium">{txn.date}</span> - 
-                      <span className={`ml-2 ${txn.type === 'Debit' ? 'text-red-500' : 'text-green-500'}`}>
-                        {txn.type}
-                      </span>: 
-                      <span className="ml-2 font-bold">${txn.amount.toFixed(2)}</span>
-                    </li>
-                  ))}
+                  {reversedTransactions.slice(0, 5).map((txn, index) => {
+                    const isDebit = txn.transactionType === 'Debit';
+                    return (
+                      <li key={index} className="border-b last:border-none py-2 text-sm">
+                        <span className="font-medium">{new Date(txn.transactionDate).toLocaleString()}</span> - 
+                        <span className={`ml-2 ${isDebit ? 'text-red-500' : 'text-green-500'}`}>
+                          {isDebit ? 'Debit' : 'Credit'}
+                        </span>: 
+                        <span className="ml-2 font-bold">₹{txn.amount.toFixed(2)}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               ) : (
                 <p className="text-gray-500">No recent transactions found.</p>

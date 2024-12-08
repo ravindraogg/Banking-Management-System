@@ -35,13 +35,15 @@ const TransactionHistory = () => {
 
       try {
         const transactions = await fetchCustomerTransactions(customerId);
-        // Filter transactions where the sender or recipient matches the current customer ID
+        // Filter only Debit transactions for the current customer
         const filteredTransactions = transactions.filter(
-          (txn) => txn.senderCustomerId === customerId || txn.recipientCustomerId === customerId
+          (txn) => txn.transactionType === 'Debit' && txn.senderCustomerId === customerId
         );
-        setTransactions(filteredTransactions);
+
+        // Reverse the filtered transactions array before setting it to state
+        setTransactions(filteredTransactions.reverse()); // Reverse before setting to state
         setLoading(false);
-        console.log("Transactions after filtering:", filteredTransactions); // Log filtered transactions
+        console.log("Transactions after filtering and reversing:", filteredTransactions); // Log filtered transactions
       } catch (error) {
         console.error('Error fetching transactions:', error);
         setError('Error fetching transaction data.');
@@ -75,11 +77,11 @@ const TransactionHistory = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {transactions.map((txn, index) => (
+                  {transactions.map((txn, index) => ( // No need to reverse here since it's already reversed in state
                     <tr key={index}>
                       <td>{new Date(txn.transactionDate).toLocaleString()}</td>
                       <td>{txn.transactionType}</td>
-                      <td>${txn.amount}</td>
+                      <td>₹{txn.amount.toFixed(2)}</td> {/* Changed currency symbol to ₹ */}
                       <td>{txn.description}</td>
                     </tr>
                   ))}

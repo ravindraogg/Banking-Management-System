@@ -5,9 +5,15 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Simulating user logout by clearing session or token
-    localStorage.removeItem('userToken'); // Example, replace with actual token/session management
-    navigate('/');
+    // Clear the user token and customer ID from localStorage
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('customerId');
+
+    // Optionally, you can clear other localStorage items if needed
+    // localStorage.removeItem('someOtherKey');
+
+    // Redirect the user to the login page
+    navigate('/login');
   };
 
   return (

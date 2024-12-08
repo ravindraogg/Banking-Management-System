@@ -55,7 +55,7 @@ const AccountDetails = () => {
           </div>
           <div className="flex justify-between">
             <span className="font-medium text-lg">Minimum Balance:</span>
-            <span>${account.minimumBalance || 'Not Available'}</span>
+            <span>{account.minimumBalance ? `₹${account.minimumBalance}` : 'Not Available'}</span>
           </div>
         </div>
       );
@@ -64,11 +64,11 @@ const AccountDetails = () => {
         <div className="space-y-4">
           <div className="flex justify-between">
             <span className="font-medium text-lg">Overdraft Limit:</span>
-            <span>${account.overdraftLimit || 'Not Available'}</span>
+            <span>{account.overdraftLimit ? `₹${account.overdraftLimit}` : 'Not Available'}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-medium text-lg">Transaction Fees:</span>
-            <span>${account.transactionFees || 'Not Available'}</span>
+            <span>{account.transactionFees ? `₹${account.transactionFees}` : 'Not Available'}</span>
           </div>
         </div>
       );
@@ -77,12 +77,11 @@ const AccountDetails = () => {
   };
 
   return (
-    
-      <>
+    <>
       <header className="bg-blue-600 text-white shadow-md p-4 flex justify-between items-center">
-      <h1 className="text-2xl font-bold">Pluto Banking</h1>
-    </header>
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
+        <h1 className="text-2xl font-bold">Pluto Banking</h1>
+      </header>
+      <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
         <h1 className="text-3xl font-bold mb-6">Account Details</h1>
         <div className="text-lg font-medium mb-6">
           <span className="text-gray-600">Customer ID:</span> <span className="text-blue-500">{customerId}</span>
@@ -100,7 +99,7 @@ const AccountDetails = () => {
                 <div className="font-medium text-lg">Account Type:</div>
                 <div>{account.accountType}</div>
                 <div className="font-medium text-lg">Balance:</div>
-                <div>${account.balance}</div>
+                <div>₹{account.balance}</div>
                 <div className="font-medium text-lg">Status:</div>
                 <div>{account.status}</div>
               </div>
@@ -110,7 +109,8 @@ const AccountDetails = () => {
         ) : (
           <div className="text-lg font-semibold text-red-500">No accounts found for this customer.</div>
         )}
-      </div></>
+      </div>
+    </>
   );
 };
 
