@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import UserSidebar from '../components/UserSidebar';
+import Header from '../../pages/Header';
 
 const AccountDetails = () => {
   const customerId = localStorage.getItem('customerId'); // Retrieve customer ID
@@ -78,9 +78,7 @@ const AccountDetails = () => {
 
   return (
     <>
-      <header className="bg-blue-600 text-white shadow-md p-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Pluto Banking</h1>
-      </header>
+    <Header></Header>
       <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
         <h1 className="text-3xl font-bold mb-6">Account Details</h1>
         <div className="text-lg font-medium mb-6">
