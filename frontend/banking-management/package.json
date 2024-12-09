@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "homepage": "https://ravindraogg.github.io/Banking-System"
   },
   "dependencies": {
     "autoprefixer": "^10.4.20",
