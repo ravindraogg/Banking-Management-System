@@ -1,0 +1,9 @@
+[build]
+  base = "frontend/banking-management" # Path to the frontend
+  command = "npm run build"            # Command to build the project
+  publish = "frontend/banking-management/dist" # Output directory for Netlify
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
