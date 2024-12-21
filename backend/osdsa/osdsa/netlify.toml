@@ -1,4 +1,9 @@
-# Install Maven before running the build
-- apt-get update -y
-- apt-get install maven -y
-- mvn clean package
+[build]
+  base = "backend/osdsa/osdsa"
+  command = "apt-get update -y && apt-get install maven -y && mvn clean package"
+  publish = "backend/osdsa/osdsa/target"
+  functions = "backend/osdsa/osdsa/target/osdsa-0.0.1-SNAPSHOT.jar"
+
+[build.environment]
+  SPRING_DATA_MONGODB_URI = "mongodb+srv://banking:Ravi-7677@mycosmosmongodbaccount.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
+  SPRING_DATA_MONGODB_DATABASE = "banking_system_db"
