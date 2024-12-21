@@ -1,0 +1,4 @@
+# Install Maven before running the build
+- apt-get update -y
+- apt-get install maven -y
+- mvn clean package
