@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header className="bg-blue-600 text-white shadow-md p-4 flex justify-between items-center">
       {/* Title */}
-      <h1 className="text-2xl font-bold">Pluto Banking</h1>
+     <a href="/"> <h1 className="text-2xl font-bold">Pluto Banking</h1>
 
       {/* Home Icon */}
       <a href="/user/dashboard" className="flex items-center space-x-2 text-white hover:text-gray-200 transition duration-300">
