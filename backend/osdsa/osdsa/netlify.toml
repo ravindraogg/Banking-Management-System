@@ -1,6 +1,8 @@
 [build]
- base = "/opt/build/repo/backend/osdsa/osdsa"
-  command = "mvn clean package"  # Use Maven directly instead of Docker
-  publish = "/opt/build/repo/backend/osdsa/osdsa/backend/osdsa/osdsa/backend/osdsa/osdsa/target"
-  functionsDirectory = "backend/osdsa/osdsa/backend/osdsa/osdsa/target/osdsa-0.0.1-SNAPSHOT.jar"
-  environment = { SPRING_DATA_MONGODB_DATABASE = "banking_system_db", SPRING_DATA_MONGODB_URI = "mongodb+srv://banking:Ravi-7677@mycosmosmongodbaccount.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000" }
+  base = "backend/osdsa/osdsa"  # Base directory of your project
+  command = "mvn clean package"  # Use Maven directly to build the project
+  publish = "backend/osdsa/osdsa/target"  # The directory to publish
+
+[context.production.environment]
+  SPRING_DATA_MONGODB_DATABASE = "banking_system_db"
+  SPRING_DATA_MONGODB_URI = "mongodb+srv://banking:Ravi-7677@mycosmosmongodbaccount.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&maxIdleTimeMS=120000"
