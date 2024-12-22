@@ -60,7 +60,7 @@ const ProfileUpdate = () => {
 
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:8080/customer/${customerId}`, {
+      const response = await fetch(`https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/customer/${customerId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -23,7 +23,7 @@ const UserDashboard = () => {
           setBalance(totalBalance);
         }
 
-        const transactionResponse = await axios.get(`http://localhost:8080/customer/${customerId}/transactions`);
+        const transactionResponse = await axios.get(`https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/customer/${customerId}/transactions`);
         setTransactions(transactionResponse.data);
         setLoading(false);
       } catch (err) {
