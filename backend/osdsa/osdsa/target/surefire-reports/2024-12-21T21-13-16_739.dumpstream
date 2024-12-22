@@ -1,0 +1,5 @@
+# Created at 2024-12-21T21:13:17.259
+Boot Manifest-JAR contains absolute paths in classpath 'D:\GITHUB_CLONE\Banking-Management-System\backend\osdsa\osdsa\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

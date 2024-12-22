@@ -6,7 +6,7 @@ import UserFooter from '../components/UserFooter';
 // Fetch function to get transactions based on customer ID
 const fetchCustomerTransactions = async (customerId) => {
   try {
-    const response = await fetch(`http://localhost:8080/customer/${customerId}/transactions`);
+    const response = await fetch(`https://pluto-banking-backend.onrender.com/customer/${customerId}/transactions`);
     if (!response.ok) {
       throw new Error('Failed to fetch transactions');
     }

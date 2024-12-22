@@ -9,7 +9,7 @@ const ViewCustomers = () => {
   useEffect(() => {
     const getCustomers = async () => {
       try {
-        const response = await fetch('http://localhost:8080/customer/customers');
+        const response = await fetch('https://pluto-banking-backend.onrender.com/customer/customers');
         const data = await response.json();
         setCustomers(data);
       } catch (error) {

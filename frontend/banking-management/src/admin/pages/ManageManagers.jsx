@@ -10,14 +10,14 @@ const ManageBranches = () => {
 
   useEffect(() => {
     // Fetch branches from the backend when the component mounts
-    axios.get('http://localhost:8080/api/admin/branches')
+    axios.get('https://pluto-banking-backend.onrender.com/api/admin/branches')
       .then(response => setBranches(response.data))
       .catch(error => console.error('Error fetching branches:', error));
   }, []);
 
   const addBranch = () => {
     if (branchName) {
-      axios.post('http://localhost:8080/api/admin/branches', { name: branchName })
+      axios.post('https://pluto-banking-backend.onrender.com/api/admin/branches', { name: branchName })
         .then(response => setBranches([...branches, response.data]))
         .catch(error => console.error('Error adding branch:', error));
       setBranchName('');

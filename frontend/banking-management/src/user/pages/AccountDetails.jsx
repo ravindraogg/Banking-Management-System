@@ -13,7 +13,7 @@ const AccountDetails = () => {
   useEffect(() => {
     if (customerId) {
       axios
-        .get(`http://localhost:8080/customer/${customerId}/accounts`)
+        .get(`https://pluto-banking-backend.onrender.com/customer/${customerId}/accounts`)
         .then((response) => {
           const accountData = Array.isArray(response.data) ? response.data : [response.data];
           setState({ accounts: accountData, loading: false, error: null });

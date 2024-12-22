@@ -1,7 +1,6 @@
 [build]
-  base = "backend/osdsa/osdsa"  # Base directory of your project
-  command = "mvn clean package"  # Use Maven directly to build the project
-  publish = "backend/osdsa/osdsa/target"  # The directory to publish
+  base = "backend/osdsa/osdsa"
+  publish = "target"
 
 [context.production.environment]
   SPRING_DATA_MONGODB_DATABASE = "banking_system_db"

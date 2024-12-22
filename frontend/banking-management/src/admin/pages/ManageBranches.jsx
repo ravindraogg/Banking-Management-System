@@ -12,7 +12,7 @@ const ManageBranches = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get('http://localhost:8080/api/admin/branches')
+    axios.get('https://pluto-banking-backend.onrender.com/api/admin/branches')
       .then(response => {
         setBranches(response.data);
         setLoading(false);
@@ -28,7 +28,7 @@ const ManageBranches = () => {
       const newBranch = { name: branchName };
       setBranches([...branches, newBranch]);
       setBranchName('');
-            axios.post('http://localhost:8080/api/admin/add', newBranch)
+            axios.post('https://pluto-banking-backend.onrender.com/api/admin/add', newBranch)
         .then(response => {
           setError('');
         })

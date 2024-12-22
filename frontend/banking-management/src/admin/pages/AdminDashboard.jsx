@@ -46,15 +46,15 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const customerCountResponse = await fetch('http://localhost:8080/customer/customers-count');
+        const customerCountResponse = await fetch('https://pluto-banking-backend.onrender.com/customer/customers-count');
         const customerCount = await customerCountResponse.json();
         setCustomerCount(customerCount);
 
-        const branchCountResponse = await fetch('http://localhost:8080/api/admin/branch-count');
+        const branchCountResponse = await fetch('https://pluto-banking-backend.onrender.com/api/admin/branch-count');
         const branchCount = await branchCountResponse.json();
         setBranchCount(branchCount);
 
-        const managerCountResponse = await fetch('http://localhost:8080/api/admin/manager-count');
+        const managerCountResponse = await fetch('https://pluto-banking-backend.onrender.com/api/admin/manager-count');
         const managerCount = await managerCountResponse.json();
         setManagerCount(managerCount);
       } catch (error) {

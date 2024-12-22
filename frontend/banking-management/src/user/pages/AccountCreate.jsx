@@ -29,7 +29,7 @@ const AccountCreate = () => {
 
   const validateCustomerId = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/customer/${userData.customerId}`);
+      const response = await axios.get(`https://pluto-banking-backend.onrender.com/customer/${userData.customerId}`);
       if (response.status === 200 && response.data) {
         setIsCustomerIdValid(true);
         setValidationMessage('Customer ID is valid.');

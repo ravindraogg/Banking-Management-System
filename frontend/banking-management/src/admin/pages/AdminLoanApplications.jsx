@@ -10,7 +10,7 @@ const AdminLoanApplications = () => {
   // Fetch loans on component load
   useEffect(() => {
     axios
-      .get('http://localhost:8080/loan/')
+      .get('https://pluto-banking-backend.onrender.com/loan/')
       .then(response => {
         // Reverse the loans for FILO display
         setLoans(response.data.reverse());
@@ -21,7 +21,7 @@ const AdminLoanApplications = () => {
   // Handle status update (Accept/Reject)
   const handleUpdateStatus = (loanId, status) => {
     axios
-      .put(`http://localhost:8080/loan/${loanId}/status`, null, { params: { status } })
+      .put(`https://pluto-banking-backend.onrender.com/loan/${loanId}/status`, null, { params: { status } })
       .then(() => {
         setLoans(prevLoans =>
           prevLoans.map(loan =>

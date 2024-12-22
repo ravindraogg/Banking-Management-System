@@ -37,7 +37,7 @@ const LoanApplication = () => {
     console.log('Submitting loan application:', formData); // Debugging statement
 
     axios
-      .post('http://localhost:8080/loan/', formData)
+      .post('https://pluto-banking-backend.onrender.com/loan/', formData)
       .then(response => {
         console.log('Response from server:', response); // Debugging statement
         alert('Loan Application Submitted!');
