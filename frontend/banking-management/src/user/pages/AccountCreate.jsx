@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const AccountCreate = () => {
@@ -14,7 +14,7 @@ const AccountCreate = () => {
   const [validationMessage, setValidationMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -67,9 +67,7 @@ const AccountCreate = () => {
         withCredentials: true,
       });
       alert('Account created successfully!');
-      
-      // Redirect to login page after successful creation
-      navigate('/login'); // Change "/login" to the actual route for your login page
+      navigate('/login');
     } catch (error) {
       console.error('Error creating account:', error);
       if (error.response) {
@@ -83,7 +81,7 @@ const AccountCreate = () => {
   };
 
   return (
-    <div className="p-8 space-y-6 bg-gray-100 rounded-lg shadow-md w-1/3 mx-auto mt-16">
+    <div className="p-8 space-y-6 bg-gray-100 rounded-lg shadow-md w-full sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto mt-16">
       <h2 className="text-xl font-semibold text-center">Create New User Account</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -94,7 +92,7 @@ const AccountCreate = () => {
             id="customerId"
             value={userData.customerId}
             onChange={handleInputChange}
-            onBlur={validateCustomerId} // Validate customer ID on blur
+            onBlur={validateCustomerId}
             required
             className="w-full p-2 border rounded-md"
           />

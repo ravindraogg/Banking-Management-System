@@ -14,14 +14,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post('https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/api/login', credentials);
-      
-      if (response.status === 200) {
-        const { customerId } = response.data;  // Extract customerId from the response
+      const response = await axios.post(
+        'https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/api/login',
+        credentials
+      );
 
-        // Store the customerId in localStorage
+      if (response.status === 200) {
+        const { customerId } = response.data;
         localStorage.setItem('customerId', customerId);
 
         if (isAdmin) {
@@ -41,9 +41,9 @@ const Login = () => {
       <header className="bg-blue-600 text-white shadow-md p-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold">Pluto Banking</h1>
       </header>
-      <div className="p-8 space-y-6 bg-gray-100 rounded-lg shadow-md w-full sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto mt-16">
+      <div className="p-4 sm:p-6 md:p-8 bg-gray-100 rounded-lg shadow-md w-11/12 sm:w-2/3 md:w-1/2 lg:w-1/3 mx-auto mt-10">
         <h2 className="text-xl font-semibold text-center">Login</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
           <div>
             <label htmlFor="email" className="block text-sm font-medium">Email</label>
             <input
@@ -53,7 +53,7 @@ const Login = () => {
               value={credentials.email}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border rounded-md"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div>
@@ -65,7 +65,7 @@ const Login = () => {
               value={credentials.password}
               onChange={handleInputChange}
               required
-              className="w-full p-2 border rounded-md"
+              className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <div className="flex items-center">
