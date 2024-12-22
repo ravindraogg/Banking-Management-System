@@ -10,7 +10,7 @@ const AdminLoanApplications = () => {
   // Fetch loans on component load
   useEffect(() => {
     axios
-      .get('https://pluto-banking-backend.onrender.com/loan/')
+      .get('https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/loan/')
       .then(response => {
         // Reverse the loans for FILO display
         setLoans(response.data.reverse());

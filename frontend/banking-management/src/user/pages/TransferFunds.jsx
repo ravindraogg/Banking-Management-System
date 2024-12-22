@@ -5,7 +5,7 @@ import UserFooter from '../components/UserFooter';
 
 // API function for fund transfer between customers
 const transferFundsToAnotherCustomer = async (senderCustomerId, transactionData) => {
-  const apiUrl = `https://pluto-banking-backend.onrender.com/${senderCustomerId}/transaction`; // Fixed variable name
+  const apiUrl = `https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/${senderCustomerId}/transaction`; // Fixed variable name
 
   const payload = {
     senderCustomerId,

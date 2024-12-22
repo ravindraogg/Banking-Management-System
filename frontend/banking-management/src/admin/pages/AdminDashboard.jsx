@@ -1,4 +1,4 @@
-// import React from 'react';
+//backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net// import React from 'react';
 // import AdminHeader from '../components/AdminHeader';
 // import AdminSidebar from '../components/AdminSidebar';
 // import AdminFooter from '../components/AdminFooter';
@@ -46,15 +46,15 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const customerCountResponse = await fetch('https://pluto-banking-backend.onrender.com/customer/customers-count');
+        const customerCountResponse = await fetch('https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/customer/customers-count');
         const customerCount = await customerCountResponse.json();
         setCustomerCount(customerCount);
 
-        const branchCountResponse = await fetch('https://pluto-banking-backend.onrender.com/api/admin/branch-count');
+        const branchCountResponse = await fetch('https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/api/admin/branch-count');
         const branchCount = await branchCountResponse.json();
         setBranchCount(branchCount);
 
-        const managerCountResponse = await fetch('https://pluto-banking-backend.onrender.com/api/admin/manager-count');
+        const managerCountResponse = await fetch('https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/api/admin/manager-count');
         const managerCount = await managerCountResponse.json();
         setManagerCount(managerCount);
       } catch (error) {

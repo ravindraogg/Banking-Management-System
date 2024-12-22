@@ -15,7 +15,7 @@ const UserDashboard = () => {
   useEffect(() => {
     const fetchAccountData = async () => {
       try {
-        const accountResponse = await axios.get(`https://pluto-banking-backend.onrender.com/customer/${customerId}/accounts`);
+        const accountResponse = await axios.get(`https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/customer/${customerId}/accounts`);
         const accounts = accountResponse.data;
         
         if (accounts.length > 0) {

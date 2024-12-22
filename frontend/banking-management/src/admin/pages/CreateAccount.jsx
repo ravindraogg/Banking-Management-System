@@ -22,7 +22,7 @@ const CreateAccount = () => {
     e.preventDefault();
 
     try {
-      await axios.post('https://pluto-banking-backend.onrender.com/api/admin/customer', formData, {
+      await axios.post('https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/api/admin/customer', formData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token') || ''}`,

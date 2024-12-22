@@ -21,7 +21,7 @@ const UserProfile = () => {
 
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`https://pluto-banking-backend.onrender.com/customer/${customerId}`);
+        const response = await fetch(`https://backend-pluto-banking-d0hkd7hyd3ejhefd.southindia-01.azurewebsites.net/customer/${customerId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch user profile');
         }
