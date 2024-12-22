@@ -16,7 +16,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://pluto-banking-backend.onrender.com/api/login', credentials);
+      const response = await axios.post('http://localhost:8080/api/login', credentials);
       
       if (response.status === 200) {
         const { customerId } = response.data;  // Extract customerId from the response

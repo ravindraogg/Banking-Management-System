@@ -12,3 +12,7 @@ ENTRYPOINT ["java","-jar","/app.jar"]
 
 # Expose the application port
 EXPOSE 8080
+ENV SPRING_DATA_MONGODB_URI="mongodb+srv://banking:Ravi-7677@mycosmosmongodbaccount.mongocluster.cosmos.azure.com/?tls=true&authMechanism=SCRAM-SHA-256&retrywrites=false&connectTimeoutMS=30000&socketTimeoutMS=30000" 
+ENV SPRING_DATA_MONGODB_DATABASE="banking_system_db" 
+ENV SPRING_DATA_MONGODB_AUTHENTICATION_DATABASE="admin" 
+ENV LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY="DEBUG"
