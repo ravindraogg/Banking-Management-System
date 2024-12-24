@@ -21,43 +21,69 @@ https://pluto-banking.netlify.app/
 ## File Structure
 
 ```plaintext
-banking-management-system/
-├── backend/                          # Backend source code
-│   ├── src/
-│   │   ├── main/
-│   │   │   └── java/
-│   │   │       └── com/
-│   │   │           └── yourpackage/
-│   │   │               ├── Application.java         # Main entry point
-│   │   │               ├── controller/
-│   │   │               │   ├── AdminController.java # Admin API controller
-│   │   │               │   ├── UserController.java  # User API controller
-│   │   │               ├── model/
-│   │   │               │   └── Account.java         # User account model
-│   │   │               ├── service/
-│   │   │               │   └── AccountService.java  # Service for business logic
-│   │   │               ├── repository/
-│   │   │               │   └── AccountRepository.java # Repository interface
-│   │   │               ├── config/
-│   │   │               │   └── WebConfig.java       # CORS and global configurations
-│   ├── resources/
-│   │   └── application.properties    # Database and application config
-├── frontend/                         # Frontend source code
-│   ├── src/
-│   │   ├── components/
-│   │   │   └── Login.js              # Login page component
-│   │   ├── App.js                   # Main app component
-│   │   ├── index.js                 # React entry point
-│   │   └── styles/                  # CSS/SCSS files for styling
-├── docker/                           # Docker files for containerization
-│   ├── Dockerfile                    # Dockerfile for backend
-│   ├── docker-compose.yml            # Docker Compose configuration
-├── azure/                            # Azure configuration for deployment
-│   ├── azure-pipelines.yml          # Azure Pipeline for CI/CD
-├── netlify/                          # Netlify configuration for frontend
-│   ├── netlify.toml                  # Netlify configuration file
-├── .gitignore                        # Git ignore file
-└── README.md                         # Project documentation
+backend/
+ ├── src/
+ │    ├── main/
+ │    │    ├── java/
+ │    │    │    └── com/
+ │    │    │        └── banking/
+ │    │    │            ├── Application.java          # Spring Boot main application
+ │    │    │            ├── controller/
+ │    │    │            │    ├── AdminController.java # Admin-related endpoints
+ │    │    │            │    ├── CustomerController.java # Customer-related endpoints
+ │    │    │            ├── model/
+ │    │    │            │    ├── Account.java         # Account details
+ │    │    │            │    ├── Customer.java        # Customer details
+ │    │    │            │    ├── Loan.java            # Loan details
+ │    │    │            │    ├── Transaction.java     # Transaction details
+ │    │    │            ├── repository/
+ │    │    │            │    ├── AccountRepository.java
+ │    │    │            │    ├── LoanRepository.java
+ │    │    │            │    ├── TransactionRepository.java
+ │    │    │            ├── service/
+ │    │    │            │    ├── AccountService.java
+ │    │    │            │    ├── LoanService.java
+ │    │    │            │    ├── TransactionService.java
+ │    │    │            ├── util/
+ │    │    │            │    └── Scheduler.java       # Loan processing and multithreading
+ │    │    │            ├── config/
+ │    │    │                 └── SecurityConfig.java  # Security settings
+ │    └── resources/
+ │         └── application.properties                 # MongoDB connection details
+ └── Dockerfile
+ └── netlify.yml
+ └── pom.xml                                          # Maven dependencies for backend
+
+
+frontend/
+src/
+├── admin/                   # Admin-specific features
+│   ├── components/          # Reusable components for Admin
+│   │   ├── AdminHeader.jsx
+│   │   ├── AdminSidebar.jsx
+│   │   └── AdminFooter.jsx
+│   ├── pages/               # Admin pages
+│   │   ├── AdminDashboard.jsx
+│   │   ├── ViewCustomers.jsx
+│   │   ├── ManageBranches.jsx
+│   │   └── ManageManagers.jsx
+│   └── admin.css            # Admin-specific styles
+├── user/                    # User-specific features
+│   ├── components/          # Reusable components for User
+│   │   ├── UserHeader.jsx
+│   │   ├── UserSidebar.jsx
+│   │   └── UserFooter.jsx
+│   ├── pages/               # User pages
+│   │   ├── UserDashboard.jsx
+│   │   ├── AccountDetails.jsx
+│   │   ├── TransferFunds.jsx
+│   │   ├── TransactionHistory.jsx
+│   │   ├── LoanApplication.jsx
+│   │   └── ProfileUpdate.jsx
+│   └── user.css             # User-specific styles
+├── App.jsx                  # Main app file
+├── index.css                # Global styles
+└── main.jsx                 # Entry point
 ```
 
 ## Setup Instructions
