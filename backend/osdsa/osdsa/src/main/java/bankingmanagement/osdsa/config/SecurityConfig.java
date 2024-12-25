@@ -59,7 +59,10 @@ public class SecurityConfig {
         config.addAllowedOrigin("https://pluto-banking.netlify.app");
         config.addAllowedOrigin("http://localhost:5173");
         config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("DELETE");
+        config.addAllowedMethod("PUT");
         source.registerCorsConfiguration("/**", config);
         return source;
     }
