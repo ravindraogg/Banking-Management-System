@@ -59,7 +59,7 @@ const AccountCreate = () => {
     setIsSubmitting(true);
 
     try {
-      await axios.post('https://pluto-banking-backend.onrender.com/api/admin/createAccount', userData, {
+      const response = await axios.post('https://pluto-banking-backend.onrender.com/api/admin/createAccount', userData, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem('token') || ''}`,
