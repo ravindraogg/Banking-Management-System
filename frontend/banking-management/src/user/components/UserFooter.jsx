@@ -6,6 +6,9 @@ const UserFooter = () => {
       <p className="text-sm">
         &copy; {new Date().getFullYear()} Banking App. All rights reserved.
       </p>
+      <p className="text-sm mt-2">
+        Developed by: Ravindra S, Nitesh Reddy, Pooja C.G, Bhavana, and Dhanushree.
+      </p>
     </footer>
   );
 };
