@@ -60,11 +60,14 @@ const Home = () => {
             </p>
           </div>
         </section>
-        <footer className="w-full bg-gray-800 py-6 text-white mt-16">
-          <div className="text-center">
-            <p className="text-sm">&copy; 2024 Pluto Banking. All rights reserved.</p>
-          </div>
-        </footer>
+        <footer className="bg-gray-900 text-white p-4 text-center">
+      <p className="text-sm">
+        &copy; {new Date().getFullYear()} Banking App. All rights reserved.
+      </p>
+      <p className="text-sm mt-2">
+        Developed by: Ravindra S, Nitesh Reddy, Pooja C.G, Bhavanna, and Dhanushree.
+      </p>
+    </footer>
       </div>
     </>
   );
