@@ -35,6 +35,7 @@ public class AdminController {
         Customer createdCustomer = customerService.createCustomer(customer);
         return new ResponseEntity<>(createdCustomer, HttpStatus.CREATED);
     }
+
     // Get all customers
     @GetMapping("/customers")
     public List<Customer> getAllCustomers() {
@@ -44,9 +45,15 @@ public class AdminController {
     // Create an account for a customer
     @PostMapping("/createAccount")
     public ResponseEntity<String> createAccount(@RequestBody Account account) {
-        accountService.createAccount(account);
-        return ResponseEntity.ok("Account created successfully.");
+        try {
+            accountService.createAccount(account);
+            return ResponseEntity.ok("Account created successfully.");
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception for better debugging
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating account: " + e.getMessage());
+        }
     }
+
     // Get all accounts
     @GetMapping("/accounts")
     public List<Account> getAllAccounts() {
@@ -64,12 +71,6 @@ public class AdminController {
     public long getCustomerCount() {
         return customerService.getCustomerCount();
     }
-
-    // // Get branch count
-    // @GetMapping("/branch-count")
-    // public long getBranchCount() {
-    //     return branchService.getBranchCount();
-    // }
 
     // Delete a customer by ID
     @DeleteMapping("/customer/{id}")
