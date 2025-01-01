@@ -200,25 +200,24 @@ Thank you to the amazing contributors who made this project possible:
   <tr>
     <td align="center">
       <a href="https://github.com/ravindraogg">
-        <img src="https://avatars.githubusercontent.com/u/149950829?v=4" width="100px;" alt="Ravindra S"/>
+        <img src="https://avatars.githubusercontent.com/u/149950829?v=4" width="100px;" alt="Ravindra S" style="border-radius: 50%; overflow: hidden;" />
         <br /><sub><b>Ravindra S</b></sub>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/PanatiNitesh">
-        <img src="https://avatars.githubusercontent.com/u/134051960?v=4" width="100px;" alt="Nitesh"/>
+        <img src="https://avatars.githubusercontent.com/u/134051960?v=4" width="100px;" alt="Nitesh" style="border-radius: 50%; overflow: hidden;" />
         <br /><sub><b>Nitesh</b></sub>
       </a>
     </td>
     <td align="center">
       <a href="https://github.com/Pooja-CG">
-        <img src="https://avatars.githubusercontent.com/u/144938646?v=4" width="100px;" alt="Pooja C G"/>
+        <img src="https://avatars.githubusercontent.com/u/144938646?v=4" width="100px;" alt="Pooja C G" style="border-radius: 50%; overflow: hidden;" />
         <br /><sub><b>Pooja C G</b></sub>
       </a>
     </td>
   </tr>
 </table>
-
 
 
 ## License
