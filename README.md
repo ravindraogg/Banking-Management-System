@@ -10,7 +10,6 @@ The Banking Management System is a secure web application designed to manage use
 https://pluto-banking.netlify.app/
 ```
 
----
 
 ## Table of Contents
 
@@ -28,7 +27,6 @@ https://pluto-banking.netlify.app/
 8. [License](#license)
 9. [Contact](#contact)
 
----
 
 ## Features
 
@@ -38,7 +36,6 @@ https://pluto-banking.netlify.app/
 - **Loan Processing**: Admins can approve or reject loan applications using scheduling and multithreading.
 - **Security**: Implements secure access control for both users and admins.
 
----
 
 ## File Structure
 
@@ -107,7 +104,6 @@ src/
 └── main.jsx                 # Entry point
 ```
 
----
 
 ## Setup Instructions
 
@@ -148,7 +144,6 @@ src/
     ```
    - The frontend will be available at `http://localhost:3000`.
 
----
 
 ## Deployment
 
@@ -162,7 +157,6 @@ src/
 - The frontend is hosted on **Netlify**.
 - The build is automatically deployed after each commit to the repository.
 
----
 
 ## Technologies Used
 
@@ -171,7 +165,6 @@ src/
 - **Database**: MongoDB
 - **CI/CD**: Azure Pipelines, Docker
 
----
 
 ## WebApp Preview
 1. **Home Page**.
@@ -189,7 +182,6 @@ src/
 5. **Admin Loan Review Page**.
 <img src="https://github.com/user-attachments/assets/7b5b5859-47c3-4e3e-b851-4ea03cd9195b" alt="admin_loan" style="border-radius: 3px; width: 100%; max-width: 600px;">
 
----
 
 ## How to Contribute
 
@@ -199,13 +191,40 @@ src/
 4. **Push your changes** to your fork.
 5. **Open a pull request** to the `main` branch.
 
----
+
+## Contributors
+
+Thank you to the amazing contributors who made this project possible:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/ravindraogg">
+        <img src="https://avatars.githubusercontent.com/u/149950829?v=4" width="100px;" alt="Ravindra S"/>
+        <br /><sub><b>Ravindra S</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/PanatiNitesh">
+        <img src="https://avatars.githubusercontent.com/u/134051960?v=4" width="100px;" alt="Nitesh"/>
+        <br /><sub><b>Nitesh</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Pooja-CG">
+        <img src="https://avatars.githubusercontent.com/u/144938646?v=4" width="100px;" alt="Pooja C G"/>
+        <br /><sub><b>Pooja C G</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
 
----
 
 ## Contact
 
