@@ -173,21 +173,21 @@ src/
 
 ---
 
-##WebApp Preview
+## WebApp Preview
 1. **Home Page**.
-![homepage](https://github.com/user-attachments/assets/84aff084-fe3d-4cb5-b021-0614a6722dd7)
+<img src="https://github.com/user-attachments/assets/84aff084-fe3d-4cb5-b021-0614a6722dd7" alt="homepage" style="border-radius: 3px; width: 100%; max-width: 600px;">
 
 2. **Create Account Page**.
-![account_create](https://github.com/user-attachments/assets/a701f92a-62d0-4d72-b271-685526ee18a2)
+<img src="https://github.com/user-attachments/assets/a701f92a-62d0-4d72-b271-685526ee18a2" alt="account_create" style="border-radius: 3px; width: 100%; max-width: 600px;">
 
 3. **User Dashboard**.
-![user_dashboard](https://github.com/user-attachments/assets/a966c437-19a2-4c9c-927a-0fcc37326d50)
+<img src="https://github.com/user-attachments/assets/a966c437-19a2-4c9c-927a-0fcc37326d50" alt="user_dashboard" style="border-radius: 3px; width: 100%; max-width: 600px;">
 
 4. **Account Details Page**.
-![account_details](https://github.com/user-attachments/assets/2221c848-bd3f-45ea-ba70-b0ee38b8f91a)
+<img src="https://github.com/user-attachments/assets/2221c848-bd3f-45ea-ba70-b0ee38b8f91a" alt="account_details" style="border-radius: 3px; width: 100%; max-width: 600px;">
 
 5. **Admin Loan Review Page**.
-![admin_loan](https://github.com/user-attachments/assets/7b5b5859-47c3-4e3e-b851-4ea03cd9195b)
+<img src="https://github.com/user-attachments/assets/7b5b5859-47c3-4e3e-b851-4ea03cd9195b" alt="admin_loan" style="border-radius: 3px; width: 100%; max-width: 600px;">
 
 ---
 
