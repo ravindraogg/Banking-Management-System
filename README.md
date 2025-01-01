@@ -10,6 +10,26 @@ The Banking Management System is a secure web application designed to manage use
 https://pluto-banking.netlify.app/
 ```
 
+---
+
+## Table of Contents
+
+1. [Features](#features)
+2. [File Structure](#file-structure)
+3. [Setup Instructions](#setup-instructions)
+    - [Backend Setup](#backend-setup)
+    - [Frontend Setup](#frontend-setup)
+4. [Deployment](#deployment)
+    - [Backend Deployment](#backend-deployment)
+    - [Frontend Deployment](#frontend-deployment)
+5. [Technologies Used](#technologies-used)
+6. [Preview](#webapp-preview)
+7. [How to Contribute](#how-to-contribute)
+8. [License](#license)
+9. [Contact](#contact)
+
+---
+
 ## Features
 
 - **User Registration & Login**: Allows customers to create accounts, log in, and manage their information securely.
@@ -17,6 +37,8 @@ https://pluto-banking.netlify.app/
 - **Transaction Management**: Users can transfer funds, view transaction history, and manage transactions.
 - **Loan Processing**: Admins can approve or reject loan applications using scheduling and multithreading.
 - **Security**: Implements secure access control for both users and admins.
+
+---
 
 ## File Structure
 
@@ -54,7 +76,6 @@ backend/
  └── netlify.yml
  └── pom.xml                                          # Maven dependencies for backend
 
-
 frontend/
 src/
 ├── admin/                   # Admin-specific features
@@ -85,6 +106,8 @@ src/
 ├── index.css                # Global styles
 └── main.jsx                 # Entry point
 ```
+
+---
 
 ## Setup Instructions
 
@@ -125,6 +148,8 @@ src/
     ```
    - The frontend will be available at `http://localhost:3000`.
 
+---
+
 ## Deployment
 
 ### Backend Deployment
@@ -137,12 +162,34 @@ src/
 - The frontend is hosted on **Netlify**.
 - The build is automatically deployed after each commit to the repository.
 
+---
+
 ## Technologies Used
 
-- **Backend**: Java, Spring Boot, Docker, Azure
+- **Backend**: Java, Spring-Boot, Docker, Azure
 - **Frontend**: React, Netlify
 - **Database**: MongoDB
 - **CI/CD**: Azure Pipelines, Docker
+
+---
+
+##WebApp Preview
+1. **Home Page**.
+![homepage](https://github.com/user-attachments/assets/84aff084-fe3d-4cb5-b021-0614a6722dd7)
+
+2. **Create Account Page**.
+![account_create](https://github.com/user-attachments/assets/a701f92a-62d0-4d72-b271-685526ee18a2)
+
+3. **User Dashboard**.
+![user_dashboard](https://github.com/user-attachments/assets/a966c437-19a2-4c9c-927a-0fcc37326d50)
+
+4. **Account Details Page**.
+![account_details](https://github.com/user-attachments/assets/2221c848-bd3f-45ea-ba70-b0ee38b8f91a)
+
+5. **Admin Loan Review Page**.
+![admin_loan](https://github.com/user-attachments/assets/7b5b5859-47c3-4e3e-b851-4ea03cd9195b)
+
+---
 
 ## How to Contribute
 
@@ -152,9 +199,13 @@ src/
 4. **Push your changes** to your fork.
 5. **Open a pull request** to the `main` branch.
 
+---
+
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
+
+---
 
 ## Contact
 
